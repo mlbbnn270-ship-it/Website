@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Arabian Night Restaurant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d9a524;
+      --gold-soft: #f0c55a;
+      --dark: #1a1310;
+      --light: #fffaf0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--dark);
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    /* NAVBAR */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(26, 19, 16, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.7rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: "Playfair Display", serif;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .brand-text-main {
+      font-size: 1.3rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .brand-text-sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      color: #f1e4c7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.2rem;
+      opacity: 0.85;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(145deg, #221612, #110c0a);
+      padding: 3.5rem 1.5rem 3rem;
+      border-bottom: 5px solid var(--gold-soft);
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 4vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-script {
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-text {
+      max-width: 460px;
+      color: #f7eee0;
+      margin-bottom: 1.4rem;
+      font-size: 0.95rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--gold);
+      color: #1a1310;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #e1d4bf;
+      opacity: 0.9;
+    }
+
+    .hero-card {
+      border-radius: 18px;
+      background: radial-gradient(circle at top, #3a2518, #140f0c);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+      padding: 1.4rem 1.2rem;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-card-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+    }
+
+    .hero-card-pill {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-card-main {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 0.9rem;
+      aspect-ratio: 4 / 3;
+      background: url("images/hero-food.jpg") center/cover no-repeat;
+    }
+    /* Replace images/hero-food.jpg with your own hero photo */
+
+    .hero-card-footer {
+      font-size: 0.8rem;
+      color: #f5ead6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-chip {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 0.25rem 0.8rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 3rem 0 0;
+    }
+
+    .section-heading {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .section-heading span {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-heading h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: #211712;
+      border-radius: 18px;
+      padding: 1.7rem 1.5rem 1.5rem;
+      margin-top: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .about p {
+      font-size: 0.95rem;
+      color: #f3e4cf;
+    }
+
+    /* MENU */
+
+    .menu-section {
+      margin-top: 2.5rem;
+    }
+
+    .menu-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.6rem;
+      gap: 1rem;
+    }
+
+    .menu-section h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold-soft);
+    }
+
+    .menu-note {
+      font-size: 0.8rem;
+      color: #f3e4cf;
+      opacity: 0.85;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .menu-item {
+      background: #211712;
+      border-radius: 16px;
+      padding: 0.9rem 1rem 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 0.75rem;
+      row-gap: 0.2rem;
+      align-items: start;
+    }
+
+    .menu-main {
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .price {
+      font-weight: 600;
+      color: var(--gold-soft);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .menu-desc {
+      grid-column: 1 / -1;
+      font-size: 0.85rem;
+      color: #f3e4cf;
+    }
+
+    .menu-tag {
+      margin-top: 0.25rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 3rem;
+      padding: 1.5rem 1.5rem 2.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #15100d;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #e2d7c2;
+    }
+
+    footer .footer-note {
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 2.4rem;
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none; /* simple mobile: hide nav links */
+      }
+      .wrapper {
+        padding-inline: 1rem;
+      }
+      .about {
+        padding-inline: 1.1rem;
+      }
+      .menu-item {
+        grid-template-columns: 1fr;
+      }
+      .price {
+        justify-self: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <!-- Replace with <img src="images/logo.png" alt="Arabian Night logo" /> if you have a logo file -->
+        <div class="brand-logo">AN</div>
+        <div>
+          <div class="brand-text-main">Arabian Night</div>
+          <div class="brand-text-sub">Authentic Middle Eastern Cuisine</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#top">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tagline">Welcome to</div>
+        <h1 class="hero-title">Arabian Night</h1>
+        <div class="hero-script">Rich flavor. Warm hospitality.</div>
+        <p class="hero-text">
+          From smoky shawarma and charcoal-grilled kebabs to fresh salads and
+          classic hookah flavors, Arabian Night brings the taste of the Middle East
+          to your table.
+        </p>
+        <div class="hero-cta">
+          <a href="#menu" class="btn-primary">View Full Menu</a>
+          <span class="hero-note">Made fresh to order.</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-title">Signature Plates</div>
+          <div class="hero-card-pill">Arabian Night Specials</div>
+        </div>
+        <div class="hero-card-main">
+          <!-- This is just a background image area styled in CSS -->
+        </div>
+        <div class="hero-card-footer">
+          <div>
+            <strong>Mandi Rice • Beef Shish Kebab</strong><br>
+            House hummus, salad & fluffy rice.
+          </div>
+          <div class="hero-chip">Halal</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main class="wrapper">
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about">
+        <p>
+          Arabian Night is all about comfort food, family-style plates, and bold
+          Middle Eastern flavors. Enjoy grilled meats, shawarma, falafel,
+          salads, desserts and classic hookah in a relaxed, welcoming atmosphere.
+        </p>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section id="menu">
+      <div class="section-heading">
+        <span>Our Food & Drinks</span>
+        <h2>Menu</h2>
+      </div>
+
+      <!-- RICE & GRILLS -->
+      <div class="menu-section">
+        <div class="menu-title-row">
+          <h3>Rice & Grills</h3>
+          <p class="menu-note">All plates served with rice and salad.</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-main">Mandi Rice (Chicken)</div>
+            <div class="price">$17.99</div>
+            <p class="menu-desc">
+              Served with rice, chicken, salad, and hummus.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Biryani Rice</div>
+            <div class="price">$18.99</div>
+            <p class="menu-desc">
+              Served with rice, chicken, and salad.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Chicken Shish Kebab</div>
+            <div class="price">$17.99</div>
+            <p class="menu-desc">
+              Served with rice, chicken, hummus, and salad.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Beef Shish Kebab</div>
+            <div class="price">$17.99</div>
+            <p class="menu-desc">
+              Served with rice, kebab, hummus, and salad.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Beef Shawarma Plate</div>
+            <div class="price">$17.99</div>
+            <p class="menu-desc">
+              Served with rice, shawarma, hummus, and salad.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Arabian Night Meat Special</div>
+            <div class="price">$60.00</div>
+            <p class="menu-desc">
+              All meats in one platter – perfect for sharing.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- SANDWICHES -->
+      <div class="menu-section">
+        <div class="menu-title-row">
+          <h3>Sandwiches</h3>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-main">Falafel Sandwich</div>
+            <div class="price">$9.99</div>
+            <p class="menu-desc">
+              Falafel, tomatoes, cucumbers, lettuce, pickles, sauce, hummus or tahini.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Chicken Shawarma Sandwich</div>
+            <div class="price">$9.99</div>
+            <p class="menu-desc">
+              Chicken, tomatoes, onions, pickles, lettuce, sauce.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Kufta Sandwich</div>
+            <div class="price">$9.99</div>
+            <p class="menu-desc">
+              Kufta, ground meat, tomatoes, cucumber, lettuce.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Crispy Chicken Sandwich</div>
+            <div class="price">$9.99</div>
+            <p class="menu-desc">
+              Chicken, lettuce, onions, pickles, tomatoes, cheese.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Beef Shawarma Sandwich</div>
+            <div class="price">$9.99</div>
+            <p class="menu-desc">
+              Beef, tomatoes, onions, pickles, lettuce, sauce.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Chicken Nuggets Plate</div>
+            <div class="price">$8.99</div>
+            <p class="menu-desc">
+              8 pieces with fries.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- SALADS & APPETIZERS -->
+      <div class="menu-section">
+        <div class="menu-title-row">
+          <h3>Salads & Appetizers</h3>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-main">House Salad</div>
+            <div class="price">$5.99</div>
+            <p class="menu-desc">
+              Lettuce, tomatoes, cucumbers, croutons, dressings.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Greek Salad</div>
+            <div class="price">$5.99</div>
+            <p class="menu-desc">
+              Tomatoes, cucumbers, red onions, peppers, olives, feta cheese.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Tabouli Salad</div>
+            <div class="price">$5.99</div>
+            <p class="menu-desc">
+              Fresh parsley, cucumbers, tomatoes, green herbs.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Baba Ganoush</div>
+            <div class="price">$2.99</div>
+            <p class="menu-desc">
+              Roasted eggplant, tahini, garlic, lemon juice, olive oil, sumac, fresh parsley.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Foul Moudames</div>
+            <div class="price">$4.99</div>
+            <p class="menu-desc">
+              Fava beans, garlic, lemon, olive oil, tahini, tomatoes, jalapeños.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Scrambled Eggs</div>
+            <div class="price">$2.99</div>
+            <p class="menu-desc">
+              Classic breakfast eggs.
+              <span class="menu-tag">Add-ons: Zattar • Labneh ($2.99 each)</span>
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- DESSERTS & HOOKAH -->
+      <div class="menu-section">
+        <div class="menu-title-row">
+          <h3>Desserts & Hookah</h3>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-main">Baklava</div>
+            <div class="price">$1.99</div>
+            <p class="menu-desc">
+              Layers of phyllo dough, pistachios and sweet honey syrup.
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Warbat</div>
+            <div class="price">$1.99</div>
+            <p class="menu-desc">
+              Crispy phyllo dough filled with rich clotted cream (Ashta).
+            </p>
+          </article>
+
+          <article class="menu-item">
+            <div class="menu-main">Hookah (Shisha)</div>
+            <div class="price">$14.99</div>
+            <p class="menu-desc">
+              Flavors: Watermelon, Watermelon Mint, Orange, Orange Mint Apple,
+              Gum Mint, Mint, Blueberry, Love 66, Sex on the Beach.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!-- BEVERAGES -->
+      <div class="menu-section">
+        <div class="menu-title-row">
+          <h3>Beverages</h3>
+          <p class="menu-note">$2.00 each</p>
+        </div>
+        <div class="menu-grid">
+          <article class="menu-item">
+            <div class="menu-main">Sprite</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Coke</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Fanta</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Dr Pepper</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Ginger Ale</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Orange Juice</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Tea</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">Arabic Coffee</div>
+            <div class="price">$2.00</div>
+          </article>
+          <article class="menu-item">
+            <div class="menu-main">American Coffee</div>
+            <div class="price">$2.00</div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-note">Arabian Night</div>
+    <div>Website menu only – contact details will be added soon.</div>
+  </footer>
+
+</body>
+</html>
